@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Arquivos-fonte pesados NÃO versionados (gerar os CSVs a partir deles)
+*.pdf
+*.xlsx
+~$*
