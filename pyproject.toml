@@ -28,6 +28,4 @@ bncc-mcp = "bncc_mcp.server:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["bncc_mcp"]
-
-[tool.hatch.build.targets.wheel.force-include]
-"bncc_mcp/data" = "bncc_mcp/data"
+artifacts = ["bncc_mcp/data/*.csv"]
