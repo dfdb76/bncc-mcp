@@ -1,11 +1,18 @@
 # BNCC MCP
 
+[![CI](https://github.com/dfdb76/bncc-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/dfdb76/bncc-mcp/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/bncc-mcp)](https://pypi.org/project/bncc-mcp/)
+[![Python](https://img.shields.io/pypi/pyversions/bncc-mcp)](https://pypi.org/project/bncc-mcp/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
 Servidor [MCP](https://modelcontextprotocol.io) que expõe as habilidades da
 **Base Nacional Comum Curricular** (Educação Infantil, Ensino Fundamental e
 Ensino Médio) com unidade temática, objeto de conhecimento e a camada de
 priorização do **Mapa de Foco** (Instituto Reúna).
 
-Dados públicos da BNCC e do Mapa de Foco — livre para compartilhar.
+A BNCC (MEC) é de livre uso; o Mapa de Foco é © Instituto Reúna, incluído
+mediante autorização e sujeito a atribuição/uso não comercial — ver
+[`ATTRIBUTION.md`](ATTRIBUTION.md).
 
 ---
 
