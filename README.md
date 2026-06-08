@@ -10,8 +10,7 @@ Servidor [MCP](https://modelcontextprotocol.io) que expõe as habilidades da
 Ensino Médio) com unidade temática, objeto de conhecimento e a camada de
 priorização do **Mapa de Foco** (Instituto Reúna).
 
-A BNCC (MEC) é de livre uso; o Mapa de Foco é © Instituto Reúna, incluído
-mediante autorização e sujeito a atribuição/uso não comercial — ver
+A BNCC (MEC) é de livre uso; o Mapa de Foco é © Instituto Reúna, sujeito a atribuição e com permissão de uso não comercial — ver
 [`ATTRIBUTION.md`](ATTRIBUTION.md).
 
 ---
@@ -307,15 +306,14 @@ Para regerar: rodar os dois scripts (nessa ordem) e copiar
 
 ## Limitações
 
-- O **Mapa de Foco** cobre apenas Língua Portuguesa, Matemática, Ciências,
+- O **Mapa de Foco** cobre Língua Portuguesa, Matemática, Ciências,
   História e Geografia do Ensino Fundamental. Para Arte, Educação Física,
   Língua Inglesa, Ensino Religioso, Educação Infantil e Ensino Médio, `em_foco`
   é sempre `false` — porque não há Mapa de Foco publicado para esses, não por
   lacuna do acervo.
 - Educação Infantil não tem unidade temática nem objeto de conhecimento (usa
   campos de experiência); esses campos ficam vazios para EI.
-- Alguns objetos de conhecimento longos e com marcadores de História podem
-  juntar duas células adjacentes do PDF (limitação da extração por coordenada).
+
 
 ---
 
@@ -345,7 +343,7 @@ bncc-mcp/
 
 - **Código:** licença MIT (ver `LICENSE`).
 - **Dados:** a BNCC (MEC) é de livre uso; o **Mapa de Foco** é © 2020 Instituto
-  Reúna, incluído mediante autorização, e seu reuso exige atribuição e é
+  Reúna e seu reuso exige atribuição e é
   restrito a fins não comerciais. Detalhes e forma de citar em `ATTRIBUTION.md`.
 
 > Dados da BNCC: Ministério da Educação (MEC). Camada de priorização: Mapas de
