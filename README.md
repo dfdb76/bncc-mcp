@@ -69,6 +69,9 @@ pip install .
 pip install -e .
 ```
 
+Com [**uv**](https://docs.astral.sh/uv/) não é preciso instalar nada antes —
+`uvx bncc-mcp` baixa e executa o pacote do PyPI sob demanda.
+
 ---
 
 ## Configuração no Claude Code
@@ -91,6 +94,25 @@ Ou manualmente em `.mcp.json` / configuração de MCP:
   }
 }
 ```
+
+> **Usuários de uv:** se você roda Python pelo uv, não há um `python` solto no
+> PATH. Use `uvx bncc-mcp` (recomendado — dispensa instalação) ou
+> `uv run python -m bncc_mcp`:
+>
+> ```bash
+> claude mcp add bncc --scope user -- uvx bncc-mcp
+> ```
+>
+> ```json
+> {
+>   "mcpServers": {
+>     "bncc": {
+>       "command": "uvx",
+>       "args": ["bncc-mcp"]
+>     }
+>   }
+> }
+> ```
 
 As tools aparecem como `mcp__bncc__<nome>` na sessão seguinte (servidores
 adicionados durante uma sessão não carregam retroativamente).
