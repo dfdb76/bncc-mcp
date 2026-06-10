@@ -3,9 +3,12 @@
 
 Expõe as habilidades da Base Nacional Comum Curricular (Educação Infantil,
 Ensino Fundamental e Ensino Médio) com unidade temática, objeto de
-conhecimento e a camada de priorização do Mapa de Foco (Instituto Reúna).
+conhecimento e a camada de priorização do Mapa de Foco (Instituto Reúna),
+além das habilidades de Computação do complemento à BNCC (anexo ao Parecer
+CNE/CEB nº 2/2022), organizadas em eixos.
 
-Dados públicos da BNCC — livre para compartilhar.
+Dados públicos da BNCC — livre para compartilhar. Proveniência e licenças
+dos demais dados em ATTRIBUTION.md.
 """
 from __future__ import annotations
 
@@ -19,6 +22,7 @@ from mcp.server.fastmcp import FastMCP
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
 HAB_CSV = os.path.join(DATA_DIR, "bncc_habilidades.csv")
 EM_CSV = os.path.join(DATA_DIR, "bncc_em.csv")
+COMP_CSV = os.path.join(DATA_DIR, "bncc_comp.csv")
 
 mcp = FastMCP("bncc")
 
@@ -82,6 +86,27 @@ def _load() -> dict[str, dict[str, Any]]:
                 "habilidade": r.get("habilidade", "").strip(),
                 "em_foco": False,
             }
+
+    # Computação (complemento à BNCC — anexo ao Parecer CNE/CEB nº 2/2022)
+    with open(COMP_CSV, encoding="utf-8-sig") as f:
+        for r in csv.DictReader(f):
+            cod = (r.get("codigo") or "").strip()
+            if not cod or cod in registros:
+                continue
+            eixo = r.get("eixo", "").strip()
+            registros[cod] = {
+                "codigo": cod,
+                "etapa": r.get("etapa", "").strip(),
+                "componente": r.get("componente", "").strip(),
+                "ano_ou_faixa": r.get("ano_ou_faixa", "").strip(),
+                "eixo": eixo,
+                # eixo também como unidade temática: bncc_listar e o índice
+                # de busca operam sobre esse campo canônico
+                "unidade_tematica": eixo,
+                "objeto_conhecimento": "",
+                "habilidade": r.get("habilidade", "").strip(),
+                "em_foco": False,
+            }
     return registros
 
 
@@ -130,7 +155,7 @@ def _filtra(recs, etapa="", componente="", ano="", apenas_foco=False):
 @mcp.tool()
 def bncc_lookup(codigo: str) -> dict:
     """Retorna o registro completo de uma habilidade da BNCC pelo código
-    (ex.: 'EF06MA01', 'EF01LP01', 'EM13LGG101').
+    (ex.: 'EF06MA01', 'EF01LP01', 'EM13LGG101', 'EF06CO01').
 
     Inclui enunciado, etapa, componente, ano, unidade temática, objeto de
     conhecimento e — quando a habilidade está no Mapa de Foco — toda a camada
@@ -155,7 +180,8 @@ def bncc_buscar(texto: str = "", etapa: str = "", componente: str = "",
     Args:
         texto: termo(s) a buscar no enunciado/objeto/unidade (vazio = só filtros).
         etapa: 'Ensino Fundamental', 'Educação Infantil', 'Ensino Médio'.
-        componente: ex. 'Matemática', 'Língua Portuguesa', 'Ciências'.
+        componente: ex. 'Matemática', 'Língua Portuguesa', 'Ciências',
+            'Computação' (complemento à BNCC, códigos 'CO').
         ano: ex. '6' ou '06'; casa também intervalos ('69' = 6º ao 9º).
         apenas_em_foco: se True, restringe às habilidades do Mapa de Foco.
         limite: máximo de resultados (padrão 30).
@@ -210,7 +236,8 @@ def bncc_mapa_de_foco(componente: str = "", ano: str = "",
 
     O Mapa de Foco cobre Língua Portuguesa, Matemática, Ciências, História e
     Geografia (Ensino Fundamental). Não há Mapa de Foco para Arte, Educação
-    Física, Língua Inglesa, Ensino Religioso, Educação Infantil ou Ensino Médio.
+    Física, Língua Inglesa, Ensino Religioso, Computação, Educação Infantil
+    ou Ensino Médio.
 
     Args:
         componente: ex. 'Matemática'; vazio = todos os componentes cobertos.

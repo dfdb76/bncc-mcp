@@ -2,6 +2,16 @@
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/).
 
+## [0.2.0] - 2026-06-09
+
+### Adicionado
+- Dataset de **Computação** (complemento à BNCC, anexo ao Parecer CNE/CEB
+  nº 2/2022): 141 habilidades (`bncc_comp.csv`) — 11 Educação Infantil,
+  104 Ensino Fundamental, 26 Ensino Médio — com o campo `eixo` (Pensamento
+  Computacional, Mundo Digital, Cultura Digital). Acervo total: 1717
+  habilidades. Fonte: computacional.com.br (Prof. Christian Brackmann /
+  IFFAR, CC BY-NC-SA 4.0) — ver `ATTRIBUTION.md`.
+
 ## [0.1.0] - 2026-05-29
 
 ### Adicionado
