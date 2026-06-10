@@ -8,9 +8,12 @@
 Servidor [MCP](https://modelcontextprotocol.io) que expõe as habilidades da
 **Base Nacional Comum Curricular** (Educação Infantil, Ensino Fundamental e
 Ensino Médio) com unidade temática, objeto de conhecimento e a camada de
-priorização do **Mapa de Foco** (Instituto Reúna).
+priorização do **Mapa de Foco** (Instituto Reúna), além das habilidades de
+**Computação** do complemento à BNCC (anexo ao Parecer CNE/CEB nº 2/2022),
+organizadas nos eixos Pensamento Computacional, Mundo Digital e Cultura
+Digital.
 
-A BNCC (MEC) é de livre uso; o Mapa de Foco é © Instituto Reúna, sujeito a atribuição e com permissão de uso não comercial — ver
+A BNCC (MEC) é de livre uso; o Mapa de Foco é © Instituto Reúna, sujeito a atribuição e com permissão de uso não comercial; os dados de Computação derivam de transcrição sob licença CC BY-NC-SA 4.0 — ver
 [`ATTRIBUTION.md`](ATTRIBUTION.md).
 
 ---
@@ -38,10 +41,16 @@ A BNCC (MEC) é de livre uso; o Mapa de Foco é © Instituto Reúna, sujeito a a
 
 | Etapa | Habilidades | Enriquecimento |
 |---|---|---|
-| Ensino Fundamental | 1304 | 100% com unidade temática + objeto de conhecimento |
-| Educação Infantil | 93 | campos de experiência |
-| Ensino Médio | 179 | área |
-| **Total** | **1576** | |
+| Ensino Fundamental | 1408 | 100% com unidade temática + objeto de conhecimento (BNCC); eixo (Computação) |
+| Educação Infantil | 104 | campos de experiência |
+| Ensino Médio | 205 | área |
+| **Total** | **1717** | |
+
+Do total, **141 habilidades são de Computação** (componente `Computação`,
+códigos com infixo `CO`, ex.: `EF06CO01`), oriundas do complemento à BNCC e
+organizadas nos eixos **Pensamento Computacional**, **Mundo Digital** e
+**Cultura Digital** (no Ensino Médio as habilidades não são divididas por
+eixo).
 
 **Mapa de Foco** — 396 habilidades priorizadas com classificação, conhecimento
 prévio, objetivos de aprendizagem, competências e habilidades relacionadas e
@@ -266,8 +275,8 @@ Resumo do acervo. Sem parâmetros.
 
 ```json
 {
-  "total_habilidades": 1576,
-  "por_etapa": {"Ensino Fundamental": 1304, "Educação Infantil": 93, "Ensino Médio": 179},
+  "total_habilidades": 1717,
+  "por_etapa": {"Ensino Fundamental": 1408, "Educação Infantil": 104, "Ensino Médio": 205},
   "em_foco_total": 396,
   "em_foco_por_componente": {"Ciências": 56, "Geografia": 53, "História": 37, "Língua Portuguesa": 127, "Matemática": 123}
 }
@@ -288,6 +297,7 @@ Campos retornados por `bncc_lookup` (varia conforme a etapa):
 | `ano_ou_faixa` | EF/EI | Ano ('06') ou faixa ('69'); faixa etária para EI. |
 | `campo_experiencia` | EI | Campo de experiência. |
 | `unidade_tematica` | EF | Unidade temática (ou prática de linguagem / eixo). |
+| `eixo` | Computação | Eixo da habilidade (Pensamento Computacional, Mundo Digital ou Cultura Digital); replicado em `unidade_tematica`. |
 | `objeto_conhecimento` | EF | Objeto de conhecimento. |
 | `habilidade` | todas | Enunciado da habilidade. |
 | `em_foco` | todas | `true` se está no Mapa de Foco. |
@@ -311,7 +321,9 @@ quanto as de faixas que incluem o 6º (`EF69...`, `EF67...`).
 
 ## Procedência dos dados
 
-Os CSVs em `data/` são gerados por dois scripts no diretório-pai do projeto:
+Os CSVs da BNCC em `data/` (`bncc_habilidades.csv` e `bncc_em.csv`) são
+gerados por dois scripts no diretório-pai do projeto; o de Computação
+(`bncc_comp.csv`) é obtido de fonte externa (item 3):
 
 1. **`extrair_objetos.py`** — extrai unidade temática + objeto de conhecimento
    do PDF oficial da BNCC (EI/EF), explorando o layout em spread de duas páginas
@@ -324,17 +336,26 @@ Para regerar: rodar os dois scripts (nessa ordem) e copiar
 `BNCC_habilidades_enriquecido.csv` → `data/bncc_habilidades.csv` e
 `bncc_em_habilidades.csv` → `data/bncc_em.csv`.
 
+3. **`data/bncc_comp.csv`** (Computação) — obtido em
+   [computacional.com.br/bncc](https://www.computacional.com.br/bncc/)
+   (Prof. Christian Brackmann / Instituto Federal Farroupilha — IFFAR,
+   conteúdo sob licença CC BY-NC-SA 4.0), adaptado de *"Computação —
+   Complemento à BNCC"*, [anexo ao Parecer CNE/CEB nº 2/2022
+   (MEC)](https://portal.mec.gov.br/index.php?option=com_docman&view=download&alias=236791-anexo-ao-parecer-cneceb-n-2-2022-bncc-computacao&category_slug=fevereiro-2022-pdf&Itemid=30192).
+
 ---
 
 ## Limitações
 
 - O **Mapa de Foco** cobre Língua Portuguesa, Matemática, Ciências,
   História e Geografia do Ensino Fundamental. Para Arte, Educação Física,
-  Língua Inglesa, Ensino Religioso, Educação Infantil e Ensino Médio, `em_foco`
-  é sempre `false` — porque não há Mapa de Foco publicado para esses, não por
-  lacuna do acervo.
+  Língua Inglesa, Ensino Religioso, Computação, Educação Infantil e Ensino
+  Médio, `em_foco` é sempre `false` — porque não há Mapa de Foco publicado
+  para esses, não por lacuna do acervo.
 - Educação Infantil não tem unidade temática nem objeto de conhecimento (usa
   campos de experiência); esses campos ficam vazios para EI.
+- As habilidades de **Computação** não têm objeto de conhecimento (a norma
+  organiza por eixos); no Ensino Médio nem o eixo é definido.
 
 
 ---
@@ -354,7 +375,8 @@ bncc-mcp/
 │   ├── server.py         # servidor MCP (FastMCP), 5 tools
 │   └── data/
 │       ├── bncc_habilidades.csv   # EI + EF, enriquecido + Mapa de Foco
-│       └── bncc_em.csv            # Ensino Médio
+│       ├── bncc_em.csv            # Ensino Médio
+│       └── bncc_comp.csv          # Computação (complemento à BNCC)
 └── tests/
     └── test_server.py
 ```
@@ -366,8 +388,12 @@ bncc-mcp/
 - **Código:** licença MIT (ver `LICENSE`).
 - **Dados:** a BNCC (MEC) é de livre uso; o **Mapa de Foco** é © 2020 Instituto
   Reúna e seu reuso exige atribuição e é
-  restrito a fins não comerciais. Detalhes e forma de citar em `ATTRIBUTION.md`.
+  restrito a fins não comerciais; os dados de **Computação** derivam de
+  transcrição do Prof. Christian Brackmann (IFFAR) sob licença
+  **CC BY-NC-SA 4.0**. Detalhes e forma de citar em `ATTRIBUTION.md`.
 
 > Dados da BNCC: Ministério da Educação (MEC). Camada de priorização: Mapas de
 > Foco da BNCC © 2020 Instituto Reúna (institutoreuna.org.br), usados com
-> autorização.
+> autorização. Habilidades de Computação: complemento à BNCC (CNE/MEC),
+> transcrição de computacional.com.br (Prof. Christian Brackmann / IFFAR,
+> CC BY-NC-SA 4.0).

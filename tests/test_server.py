@@ -20,6 +20,10 @@ from bncc_mcp import server as s
     ("89", "7", False),
     ("06", "6º", True),   # entrada com ordinal
     ("06", "", True),     # sem filtro
+    ("6-9 (Anos Finais)", "7", True),    # faixa do CSV de Computação
+    ("1-5 (Anos Iniciais)", "3", True),
+    ("1-5 (Anos Iniciais)", "7", False),
+    ("Crianças pequenas (4a a 5a11m)", "1", False),  # EI: nunca casa ano
 ])
 def test_ano_match(faixa, ano, esperado):
     assert s._ano_match({"ano_ou_faixa": faixa}, ano) is esperado
@@ -29,8 +33,8 @@ def test_ano_match(faixa, ano, esperado):
 
 def test_total_registros():
     st = s.bncc_estatisticas()
-    assert st["total_habilidades"] == 1576
-    assert st["por_etapa"]["Ensino Fundamental"] == 1304
+    assert st["total_habilidades"] == 1717
+    assert st["por_etapa"]["Ensino Fundamental"] == 1408
     assert st["em_foco_total"] == 396
 
 
@@ -64,6 +68,36 @@ def test_em_lookup():
     r = s.bncc_lookup("EM13LGG101")
     assert r["etapa"] == "Ensino Médio"
     assert r["area"].startswith("Linguagens")
+
+
+# --- Computação (complemento à BNCC) ----------------------------------------
+
+def test_computacao_lookup_ef():
+    r = s.bncc_lookup("EF06CO01")
+    assert r["componente"] == "Computação"
+    assert r["eixo"] == "Pensamento Computacional"
+    assert r["unidade_tematica"] == "Pensamento Computacional"
+    assert r["em_foco"] is False
+
+
+def test_computacao_lookup_ei_e_em():
+    assert s.bncc_lookup("EI03CO01")["etapa"] == "Educação Infantil"
+    em = s.bncc_lookup("EM13CO01")
+    assert em["etapa"] == "Ensino Médio"
+    assert em["eixo"] == ""  # no EM as habilidades não são divididas por eixo
+
+
+def test_computacao_listar():
+    r = s.bncc_listar(componente="Computação", limite=200)
+    assert r["total"] == 141
+    # 7º ano: 11 exclusivas (EF07CO) + 12 da faixa 6º-9º (EF69CO)
+    assert s.bncc_listar(componente="Computação", ano="7")["total"] == 23
+
+
+def test_computacao_busca_por_eixo():
+    r = s.bncc_buscar(texto="cultura digital", componente="Computação",
+                      limite=200)
+    assert r["total"] > 0
 
 
 # --- busca ------------------------------------------------------------------

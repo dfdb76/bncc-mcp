@@ -31,10 +31,29 @@ embarcados em `bncc_mcp/data/` têm origem e condições próprias, descritas ab
   sua própria autorização para usos que extrapolem o uso não comercial com
   atribuição.
 
+## Computação — complemento à BNCC
+
+- **Fonte primária:** *"Computação — Complemento à BNCC"*, [anexo ao Parecer
+  CNE/CEB nº 2/2022 (MEC)](https://portal.mec.gov.br/index.php?option=com_docman&view=download&alias=236791-anexo-ao-parecer-cneceb-n-2-2022-bncc-computacao&category_slug=fevereiro-2022-pdf&Itemid=30192).
+  Como ato normativo, o texto da norma é de livre utilização (Lei nº
+  9.610/98, art. 8º, inciso IV).
+- **Transcrição/adaptação utilizada (`bncc_comp.csv`):** obtida em
+  [computacional.com.br/bncc](https://www.computacional.com.br/bncc/), de
+  autoria do **Prof. Christian Brackmann / Instituto Federal Farroupilha
+  (IFFAR)**, com conteúdo sob licença
+  [**CC BY-NC-SA 4.0**](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt-br).
+- **Campos:** código, etapa, ano/faixa, componente, eixo (Pensamento
+  Computacional, Mundo Digital, Cultura Digital), enunciado da habilidade.
+- **Condição:** a licença CC BY-NC-SA 4.0 exige **atribuição**, restringe o
+  uso a fins **não comerciais** e exige que obras derivadas sejam
+  compartilhadas **sob a mesma licença** (ShareAlike).
+
 ## Como atribuir
 
 Ao usar ou citar este projeto, mantenha o crédito:
 
 > Dados da BNCC: Ministério da Educação (MEC). Camada de priorização: Mapas de
 > Foco da BNCC © 2020 Instituto Reúna (institutoreuna.org.br), usados com
-> autorização.
+> autorização. Habilidades de Computação: complemento à BNCC (CNE/MEC),
+> transcrição de computacional.com.br — Prof. Christian Brackmann / IFFAR,
+> sob licença CC BY-NC-SA 4.0.

@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "bncc-mcp"
-version = "0.1.0"
-description = "Servidor MCP da BNCC: habilidades com unidade temática, objeto de conhecimento e o Mapa de Foco (Instituto Reúna)."
+version = "0.2.0"
+description = "Servidor MCP da BNCC: habilidades com unidade temática, objeto de conhecimento, o Mapa de Foco (Instituto Reúna) e o complemento de Computação."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
 authors = [{ name = "Daniel" }]
-keywords = ["bncc", "mcp", "educacao", "curriculo", "brasil", "mapa-de-foco"]
+keywords = ["bncc", "mcp", "educacao", "curriculo", "brasil", "mapa-de-foco", "computacao"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
