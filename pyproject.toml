@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "bncc-mcp"
-version = "0.2.0"
+version = "0.2.1"
 description = "Servidor MCP da BNCC: habilidades com unidade temática, objeto de conhecimento, o Mapa de Foco (Instituto Reúna) e o complemento de Computação."
 readme = "README.md"
 requires-python = ">=3.10"

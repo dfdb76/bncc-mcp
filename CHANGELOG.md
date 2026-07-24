@@ -2,6 +2,17 @@
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/).
 
+## [0.2.1] - 2026-07-24
+
+### Corrigido
+- Habilidades do Ensino Médio (`bncc_em.csv`) cujo enunciado trazia texto
+  extraído **além da própria habilidade** — rodapés de página, cabeçalhos de
+  área, blocos de comentário e marcadores de nota de rodapé. 76 habilidades
+  reprocessadas contra o PDF oficial da BNCC-EM; nenhuma passa de ~800
+  caracteres (antes, casos com dezenas de milhares). Corrigido também um
+  artefato de hifenização ("pe la" → "pela") em EM13LP26.
+
+
 ## [0.2.0] - 2026-06-09
 
 ### Adicionado
